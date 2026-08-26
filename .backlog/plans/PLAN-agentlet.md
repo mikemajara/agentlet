@@ -13,10 +13,10 @@ Sequence for the locked PRD. Do not re-litigate name, CLI, examples, or style.
 
 | Step | Issue |
 | --- | --- |
-| 1 Hygiene | https://github.com/mikemajara/agent-files/issues/4 |
-| 2 shadcn B&W | https://github.com/mikemajara/agent-files/issues/5 |
-| 3 examples + Deploy / `-e` | https://github.com/mikemajara/agent-files/issues/6 |
-| 4 Rename to agentlet | https://github.com/mikemajara/agent-files/issues/7 |
+| 1 Hygiene | https://github.com/mikemajara/agentlet/issues/4 |
+| 2 shadcn B&W | https://github.com/mikemajara/agentlet/issues/5 |
+| 3 examples + Deploy / `-e` | https://github.com/mikemajara/agentlet/issues/6 |
+| 4 Rename to agentlet | https://github.com/mikemajara/agentlet/issues/7 |
 
 Later: #2 (shape skill). Close #1 as superseded (#4 owns that).
 

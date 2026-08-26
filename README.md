@@ -6,14 +6,14 @@ First example: **notes** — Eve tools over `notes.json` on Vercel Blob (default
 
 ## Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmikemajara%2Fagent-files%2Ftree%2Fmain%2Fexamples%2Fnotes&project-name=agentlet-notes&repository-name=agentlet-notes&stores=%5B%7B%22type%22%3A%22blob%22%7D%5D)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmikemajara%2Fagentlet%2Ftree%2Fmain%2Fexamples%2Fnotes&project-name=agentlet-notes&repository-name=agentlet-notes&stores=%5B%7B%22type%22%3A%22blob%22%7D%5D)
 
 Clones only [`examples/notes`](./examples/notes) into your GitHub repo and offers a Blob store in the same flow. Production Companion uses AI Gateway via OIDC.
 
 ## Terminal
 
 ```bash
-npx create-next-app@latest my-app -e https://github.com/mikemajara/agent-files/tree/main/examples/notes
+npx create-next-app@latest my-app -e https://github.com/mikemajara/agentlet/tree/main/examples/notes
 cd my-app
 cp .env.example .env.local
 npm install

@@ -6,7 +6,7 @@ let _files: Files | null = null;
 
 function getFiles(): Files {
   if (_files) return _files;
-  const bucket = process.env.R2_BUCKET?.trim() || "agent-files";
+  const bucket = process.env.R2_BUCKET?.trim() || "agentlet";
   const publicBaseUrl = process.env.R2_PUBLIC_BASE_URL?.trim() || undefined;
   _files = new Files({
     adapter: r2({

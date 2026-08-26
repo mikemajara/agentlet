@@ -18,7 +18,7 @@ Scaffold the whole thing and get a dead-simple Eve app you can talk to. Cheap. F
 
 ## Name
 
-**agentlet.** GitHub rename when the examples/deploy work lands. Until then the repo stays `agent-files`.
+**agentlet.** GitHub: `mikemajara/agentlet`.
 
 ## Create paths (no custom CLI)
 
@@ -30,10 +30,10 @@ Deprecate `create-agent-files`.
 
 ## GitHub issues (this cut)
 
-1. https://github.com/mikemajara/agent-files/issues/4 — docs hygiene  
-2. https://github.com/mikemajara/agent-files/issues/5 — shadcn B&W  
-3. https://github.com/mikemajara/agent-files/issues/6 — `examples/notes` + Deploy Button + `-e`  
-4. https://github.com/mikemajara/agent-files/issues/7 — rename to agentlet  
+1. https://github.com/mikemajara/agentlet/issues/4 — docs hygiene  
+2. https://github.com/mikemajara/agentlet/issues/5 — shadcn B&W  
+3. https://github.com/mikemajara/agentlet/issues/6 — `examples/notes` + Deploy Button + `-e`  
+4. https://github.com/mikemajara/agentlet/issues/7 — rename to agentlet  
 
 ## Scope of first cut
 
