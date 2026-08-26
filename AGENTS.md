@@ -2,6 +2,8 @@
 
 Template for **agent apps that use file storage as the database** — JSON (+ markdown) on Blob / R2 / local — shipped with an Eve companion.
 
+**Direction (locked):** this product is **agentlet**. Do not re-litigate. Read `.backlog/memory.md` and `.backlog/prds/PRD-agentlet.md` before changing docs, scaffold, or UI. Execution: `.backlog/plans/PLAN-agentlet.md`.
+
 ## Architecture
 
 - **Storage:** `files-sdk` adapters — Vercel Blob (default), Cloudflare R2, or local `./data`

@@ -1,13 +1,17 @@
 ---
 slug: json-file-state
-status: done
+status: archived
 issue:
 prd:
 created_at: 2026-08-12T00:36:00+02:00
+archived_at: 2026-08-26
 shared_with:
   - mikemajara/agent-files
   - mikemajara/recetas
-notes: Part B (recetas) done 2026-08-12. Part A (agent-files) done 2026-08-13.---
+notes: Historical. Do not use as product spec. Current product is agentlet — see .backlog/prds/PRD-agentlet.md
+---
+
+> **Archived.** This plan is done history. Living product direction is **agentlet** (`.backlog/prds/PRD-agentlet.md`). Do not mention the old experiment in README, AGENTS, or memory.
 
 # Plan: JSON-first file state (drop DuckDB/CSV default)
 
