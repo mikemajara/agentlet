@@ -1,28 +1,26 @@
-# Agent Files
+# agentlet
 
-**GitHub template** + **`npx create-agent-files`** for agent apps that treat **object storage as the database**.
+A tiny kit for a cheap, quick **agent web app**. Talk to an [Eve](https://eve.computer) companion; **JSON files** on object storage are the database.
 
-- **Eve** companion (`agent/`) with domain tools over JSON state  
-- **files-sdk** storage: **Vercel Blob (default)**, Cloudflare R2, or local `./data`  
-- **JSON (+ markdown)** for durable state — typed helpers, not SQL  
-- **Agent skills** under `.agents/skills/` to provision Vercel + storage  
-
-Bolsa (stocks / DuckDB ledger) remains a separate specialized demo. This repo is the generic starter for household / personal agent apps.
+- **Eve** companion (`agent/`) with domain tools over notes JSON
+- **files-sdk** storage: **Vercel Blob (default)**, Cloudflare R2, or local `./data`
+- **JSON (+ markdown)** for durable state — typed helpers, not SQL
+- **Agent skills** under `.agents/skills/` to provision Vercel + storage
 
 ## Quick start
 
-### Option A — CLI
+This checkout **is** the notes app.
 
 ```bash
-npx create-agent-files@latest my-app
-cd my-app
+cp .env.example .env.local
+# STORAGE_BACKEND=local for zero-cloud, or vercel/r2 with credentials
 npm install
 npm run dev
 ```
 
-### Option B — GitHub template
+Companion needs AI Gateway: point an agent at `.agents/skills/provision-vercel` (`vercel link` + `vercel env pull`).
 
-Use this template on GitHub → clone → `npm install` → copy `.env.example` to `.env.local`.
+Seed demo state: `{STORAGE_PREFIX}/notes.json`.
 
 ## Storage
 
@@ -34,14 +32,12 @@ Use this template on GitHub → clone → `npm install` → copy `.env.example` 
 
 If cloud credentials are missing, the app **falls back to local** so development works immediately.
 
-Seed demo state: `{STORAGE_PREFIX}/notes.json`.
-
 ## Agent provisioning
 
 Point Cursor (or another coding agent) at:
 
-- `.agents/skills/provision-vercel` — **link + `vercel env pull` (OIDC)** so Companion has AI Gateway; deploy only if asked  
-- `.agents/skills/provision-storage` — Blob / R2 / local setup  
+- `.agents/skills/provision-vercel` — **link + `vercel env pull` (OIDC)** so Companion has AI Gateway; deploy only if asked
+- `.agents/skills/provision-storage` — Blob / R2 / local setup
 
 Machine-specific HTTPS (Caddy / `*.mgl.dev`) is **not** part of these skills.
 
@@ -54,48 +50,3 @@ npm run dev     # http://localhost:3460
 npm run build
 npm start
 ```
-
-## Publish CLI (maintainers)
-
-Package: `packages/create-agent-files` → npm name **`create-agent-files`**.
-
-### Before every publish
-
-```bash
-# from repo root — syntax check + npm pack dry-run
-node scripts/prepare-publish.mjs
-# or: npm run prepare-publish -C packages/create-agent-files
-```
-
-Bump `version` in `packages/create-agent-files/package.json` when republishing
-(npm rejects duplicate versions). Commit and push.
-
-### Publish
-
-**Preferred — GitHub Actions** (needs repo secret `NPM_TOKEN` = npm Automation token with publish rights):
-
-1. Actions → **Publish create-agent-files** → Run workflow  
-   **or** `gh release create create-agent-files-v0.1.1 --generate-notes`
-2. Workflow runs `prepare-publish.mjs`, then `npm publish --access public --provenance`
-
-**Local:**
-
-```bash
-cd packages/create-agent-files
-npm login
-npm publish
-```
-
-### After publish
-
-```bash
-npx create-agent-files@latest my-app --storage local -y
-```
-
-Until published, run from a checkout:
-
-```bash
-node /path/to/agent-files/packages/create-agent-files/bin/create-agent-files.js my-app --storage vercel
-```
-
-**Note:** the CLI clones this GitHub repo, so scaffolds pick up template changes after you push `main` — even before a CLI version bump.

@@ -1,14 +1,14 @@
 ---
 name: provision-vercel
 description: >-
-  Link an Agent Files app to a Vercel project and make the Eve companion
+  Link an agentlet app to a Vercel project and make the Eve companion
   agent-ready locally (AI Gateway via OIDC). Also use when deploying, setting
-  Vercel env, or provisioning production for agent-files / create-agent-files.
+  Vercel env, or provisioning production.
   Do not use for mgl.dev / Caddy / phone HTTPS — that is a separate local-server
   concern.
 ---
 
-# Provision Vercel (Agent Files)
+# Provision Vercel (agentlet)
 
 **Portable product path** — get a scaffolded app to “Companion can call tools”
 without machine-specific reverse proxies.
@@ -49,7 +49,7 @@ and export `VERCEL_TOKEN` (do not pass `--token` on the CLI).
 
 ### 2. Link / create project
 
-From the **app root** (the Next.js project, not `packages/create-agent-files`):
+From the **app root** (the Next.js project):
 
 ```bash
 npx vercel link --yes --project <app-name>

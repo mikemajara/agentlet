@@ -2,7 +2,7 @@
   "name": "agent-files",
   "version": "0.1.0",
   "private": true,
-  "description": "Template: Eve agent + files-sdk storage + JSON file state",
+  "description": "agentlet: Eve companion + JSON files on object storage",
   "engines": {
     "node": ">=24"
   },

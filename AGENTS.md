@@ -1,6 +1,6 @@
-# Agent Files
+# agentlet
 
-Template for **agent apps that use file storage as the database** — JSON (+ markdown) on Blob / R2 / local — shipped with an Eve companion.
+Tiny kit for a **cheap, quick agent web app** — Eve companion + JSON (+ markdown) on Blob / R2 / local.
 
 **Direction (locked):** this product is **agentlet**. Do not re-litigate. Read `.backlog/memory.md` and `.backlog/prds/PRD-agentlet.md` before changing docs, scaffold, or UI. Execution: `.backlog/plans/PLAN-agentlet.md`.
 
@@ -30,10 +30,14 @@ npm install
 npm run dev
 ```
 
-## Scaffold
+This checkout is the notes app. See root [README.md](README.md).
 
-```bash
-npx create-agent-files@latest my-app
-```
+<!-- BEGIN:nextjs-agent-rules -->
 
-See root [README.md](README.md).
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

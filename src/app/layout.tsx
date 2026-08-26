@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Agent Files — Eve + JSON storage",
+  title: "agentlet — Eve + JSON storage",
   description:
-    "Template for agent apps that persist state as JSON files in object storage.",
+    "Tiny kit for a cheap, quick agent web app. JSON files on object storage.",
 };
 
 export default function RootLayout({

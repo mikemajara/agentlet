@@ -46,7 +46,7 @@ export const SEED_NOTES: NotesFile = {
       created_at: "2024-06-01T10:00:00.000Z",
       updated_at: "2024-06-01T10:00:00.000Z",
       title: "Welcome",
-      body: "Agent Files stores durable state as JSON files in object storage.",
+      body: "agentlet stores durable state as JSON files in object storage.",
       tags: ["intro", "template"],
     },
     {

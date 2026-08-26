@@ -1,12 +1,12 @@
 ---
 name: provision-storage
 description: >-
-  Configure Agent Files storage backends (Vercel Blob default, Cloudflare R2, or
+  Configure agentlet storage backends (Vercel Blob default, Cloudflare R2, or
   local ./data). Use when switching STORAGE_BACKEND, creating a Blob store,
   wiring R2 credentials, or smoke-testing file uploads.
 ---
 
-# Provision storage (Agent Files)
+# Provision storage (agentlet)
 
 Unified API: `readText` / `writeText` / `url` / `listKeys` via `src/lib/storage`.
 
