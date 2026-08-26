@@ -9,7 +9,7 @@
   1. **Primary:** Vercel Deploy Button — clone only `examples/notes` into their GitHub repo, provision Blob in the same flow (`stores=[{"type":"blob"}]`). Production Companion via AI Gateway OIDC.
   2. **Terminal:** `npx create-next-app my-app -e https://github.com/<owner>/<repo>/tree/main/examples/notes` (create-next-app, not our CLI).
   3. **Prompt/skill (later):** after clone/deploy, shape the notes app into theirs. GitHub #2. Skill ships *inside* the example.
-- **Deprecate** `packages/create-agent-files` / `npx create-agent-files`. Do not invest.
+- **Removed** `packages/create-agent-files`. Path is Deploy Button + `create-next-app -e` on `examples/notes`.
 - **Examples:** first cut is `examples/notes` only. No other example types in this backlog. GitHub “Use this template” on the whole repo is not a path (it would copy sibling examples).
 - **UI:** shadcn, neutral/zinc, no cream/green branded theme.
 - **Self-modification:** not in this cut. Next session. Clone-into-their-GitHub is the foundation.
@@ -32,4 +32,4 @@
 - Concurrent writes: last-write-wins on full JSON rewrite; in-process lock only.
 - Deploy-to-Vercel needs GitHub + Vercel. Blob + Gateway are cheap, not $0 forever. Local Companion still needs `vercel link` + `env pull`; production chat is the Deploy Button goal.
 - Name collision note (non-blocking): “agentlet” appears in a Substack essay (skills-as-agentlets) and a tiny PyPI stub `agentlet` 0.0.1. Not a well-known product. We are using it anyway.
-- `create-agent-files` currently clones whole GitHub `main` — that is the bug the examples layout fixes. Do not teach it as the path forward.
+- Clones used to copy whole GitHub `main` via `create-agent-files`. That package is gone; `create-next-app -e` / Deploy Button clone `examples/notes` only.

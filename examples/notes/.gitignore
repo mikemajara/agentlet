@@ -1,0 +1,27 @@
+# dependencies
+node_modules
+.pnp
+.pnp.*
+
+# next.js
+.next/
+out/
+
+# local file-storage fallback
+data/
+
+# env
+.env*
+!.env.example
+
+# vercel / eve
+.vercel
+.eve/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# misc
+.DS_Store
+npm-debug.log*

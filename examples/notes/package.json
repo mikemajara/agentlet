@@ -1,5 +1,5 @@
 {
-  "name": "agent-files",
+  "name": "agentlet-notes",
   "version": "0.1.0",
   "private": true,
   "description": "agentlet: Eve companion + JSON files on object storage",

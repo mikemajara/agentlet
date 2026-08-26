@@ -2,51 +2,33 @@
 
 A tiny kit for a cheap, quick **agent web app**. Talk to an [Eve](https://eve.computer) companion; **JSON files** on object storage are the database.
 
-- **Eve** companion (`agent/`) with domain tools over notes JSON
-- **files-sdk** storage: **Vercel Blob (default)**, Cloudflare R2, or local `./data`
-- **JSON (+ markdown)** for durable state — typed helpers, not SQL
-- **Agent skills** under `.agents/skills/` to provision Vercel + storage
+First example: **notes** — Eve tools over `notes.json` on Vercel Blob (default), R2, or local `./data`.
 
-## Quick start
+## Deploy
 
-This checkout **is** the notes app.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmikemajara%2Fagent-files%2Ftree%2Fmain%2Fexamples%2Fnotes&project-name=agentlet-notes&repository-name=agentlet-notes&stores=%5B%7B%22type%22%3A%22blob%22%7D%5D)
+
+Clones only [`examples/notes`](./examples/notes) into your GitHub repo and offers a Blob store in the same flow. Production Companion uses AI Gateway via OIDC.
+
+## Terminal
 
 ```bash
+npx create-next-app@latest my-app -e https://github.com/mikemajara/agent-files/tree/main/examples/notes
+cd my-app
 cp .env.example .env.local
-# STORAGE_BACKEND=local for zero-cloud, or vercel/r2 with credentials
 npm install
 npm run dev
 ```
 
-Companion needs AI Gateway: point an agent at `.agents/skills/provision-vercel` (`vercel link` + `vercel env pull`).
+`STORAGE_BACKEND=local` in `.env.local` runs without cloud credentials. Companion still needs Gateway: point an agent at `.agents/skills/provision-vercel`.
 
-Seed demo state: `{STORAGE_PREFIX}/notes.json`.
-
-## Storage
-
-| `STORAGE_BACKEND` | Credentials |
-| --- | --- |
-| `vercel` (default) | `BLOB_READ_WRITE_TOKEN` or OIDC + Blob store |
-| `r2` | `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET` |
-| `local` | none — files under `./data/{STORAGE_PREFIX}/` |
-
-If cloud credentials are missing, the app **falls back to local** so development works immediately.
-
-## Agent provisioning
-
-Point Cursor (or another coding agent) at:
-
-- `.agents/skills/provision-vercel` — **link + `vercel env pull` (OIDC)** so Companion has AI Gateway; deploy only if asked
-- `.agents/skills/provision-storage` — Blob / R2 / local setup
-
-Machine-specific HTTPS (Caddy / `*.mgl.dev`) is **not** part of these skills.
-
-See [AGENTS.md](./AGENTS.md).
-
-## Scripts
+## Local (this repo)
 
 ```bash
-npm run dev     # http://localhost:3460
-npm run build
-npm start
+cd examples/notes
+cp .env.example .env.local
+npm install
+npm run dev
 ```
+
+Smoke: `GET /api/notes` and `GET /eve/v1/health`.
