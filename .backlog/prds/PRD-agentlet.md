@@ -23,10 +23,10 @@ Scaffold the whole thing and get a dead-simple Eve app you can talk to. Cheap. F
 ## Create paths (no custom CLI)
 
 1. **Primary:** Vercel Deploy Button cloning `examples/notes` only, with Blob store in the flow. User: Vercel + GitHub accounts. Production Companion: AI Gateway OIDC.
-2. **Terminal:** `npx create-next-app -e <github tree URL to examples/notes>`.
+2. **Terminal:** `npx create-next-app -e https://github.com/mikemajara/agentlet/tree/main/examples/notes`.
 3. **Later:** prompt/skill in the cloned app to reshape notes into their domain (issue #2). Not this PRD’s first issues.
 
-Deprecate `create-agent-files`.
+`create-agent-files` is removed. Do not teach it.
 
 ## GitHub issues (this cut)
 
