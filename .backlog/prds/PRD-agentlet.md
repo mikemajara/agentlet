@@ -1,6 +1,6 @@
 ---
 slug: agentlet
-status: ready
+status: done
 created_at: 2026-08-26
 ---
 

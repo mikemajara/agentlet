@@ -1,6 +1,6 @@
 ---
 slug: agentlet
-status: ready
+status: done
 prd: .backlog/prds/PRD-agentlet.md
 created_at: 2026-08-26
 ---
