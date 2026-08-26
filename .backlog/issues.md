@@ -2,11 +2,11 @@
 
 # GitHub Issues
 
-Generated at: 2026-08-26T21:40:00Z
+Generated at: 2026-08-26T21:44:00Z
 
 | Issue | Status | Title | Labels | Assignees | Updated |
 | --- | --- | --- | --- | --- | --- |
-| #2 | OPEN | [End-to-end starter skill (research)](https://github.com/mikemajara/agentlet/issues/2) | `priority:medium`, `status:unknown`, `type:feat` | - | 2026-08-26 |
+| #2 | OPEN | [Skill inside examples/notes to reshape notes into the user's domain](https://github.com/mikemajara/agentlet/issues/2) | `priority:medium`, `status:ready`, `type:feat` | - | 2026-08-26 |
 | #7 | CLOSED | [Rename repository and docs to agentlet](https://github.com/mikemajara/agentlet/issues/7) | `priority:medium`, `type:feat` | - | 2026-08-26 |
 | #6 | CLOSED | [examples/notes + Vercel Deploy Button + create-next-app -e](https://github.com/mikemajara/agentlet/issues/6) | `priority:high`, `type:feat` | - | 2026-08-26 |
 | #5 | CLOSED | [Notes UI: shadcn black-and-white (neutral/zinc)](https://github.com/mikemajara/agentlet/issues/5) | `priority:high`, `type:feat` | - | 2026-08-26 |
