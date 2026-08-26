@@ -1,7 +1,37 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { FileTextIcon, RefreshCwIcon } from "lucide-react";
 import { CompanionPanel } from "@/components/CompanionPanel";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Spinner } from "@/components/ui/spinner";
+import { Textarea } from "@/components/ui/textarea";
 
 type Note = {
   id: string;
@@ -76,142 +106,160 @@ export function WorkspaceApp({
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-8 px-4 py-10 sm:px-6">
-      <header className="flex flex-col gap-3 border-b border-line pb-6">
+      <header className="flex flex-col gap-4">
         <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <p className="font-mono text-xs tracking-[0.2em] text-muted uppercase">
+          <div className="flex flex-col gap-1">
+            <p className="font-mono text-xs tracking-[0.2em] text-muted-foreground uppercase">
               JSON · files-sdk · Eve
             </p>
-            <h1 className="mt-1 text-4xl font-semibold tracking-tight sm:text-5xl">
+            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
               agentlet
             </h1>
           </div>
           <div className="flex items-center gap-2">
-            <span className="rounded-md bg-chip px-3 py-1 font-mono text-xs text-muted">
-              storage: {backend}
-            </span>
-            <button
+            <Badge variant="secondary">storage: {backend}</Badge>
+            <Button
               type="button"
+              variant="outline"
               onClick={() => void refresh()}
-              className="rounded-md px-3 py-1.5 text-sm text-muted ring-1 ring-line hover:bg-panel"
+              disabled={loading}
             >
+              <RefreshCwIcon data-icon="inline-start" />
               Refresh
-            </button>
-            <button
-              type="button"
-              onClick={() => setCompanionOpen(true)}
-              className="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white"
-            >
+            </Button>
+            <Button type="button" onClick={() => setCompanionOpen(true)}>
               Companion
-            </button>
+            </Button>
           </div>
         </div>
-        <p className="max-w-2xl text-sm leading-relaxed text-muted">
-          Template for household agent apps that persist state as JSON files.
-          Default storage is Vercel Blob; R2 and local{" "}
+        <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          Tiny kit for a cheap, quick agent web app. Durable state is JSON files
+          on object storage. Default is Vercel Blob; R2 and local{" "}
           <code className="font-mono">./data</code> work too.
         </p>
       </header>
 
       {error ? (
-        <div
-          role="alert"
-          className="rounded-md bg-red-50 px-3 py-2 text-sm text-danger ring-1 ring-red-200"
-        >
-          {error}
-        </div>
+        <Alert variant="destructive">
+          <AlertTitle>Could not update notes</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       ) : null}
 
       {loading ? (
-        <p className="text-sm text-muted">Loading from storage…</p>
+        <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
+          <Skeleton className="h-80" />
+          <Skeleton className="h-80" />
+        </div>
       ) : (
         <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
-          <form
-            onSubmit={onAddNote}
-            className="flex flex-col gap-3 rounded-lg bg-panel p-4 ring-1 ring-line"
-          >
-            <div>
-              <h2 className="text-lg font-medium">Add note</h2>
-              <p className="text-sm text-muted">
+          <Card>
+            <CardHeader>
+              <CardTitle>Add note</CardTitle>
+              <CardDescription>
                 Writes to <code className="font-mono">notes.json</code>.
-              </p>
-            </div>
-            <label className="flex flex-col gap-1 text-sm">
-              <span className="text-muted">Title</span>
-              <input
-                required
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="rounded-md border border-line bg-background px-2 py-1.5"
-              />
-            </label>
-            <label className="flex flex-col gap-1 text-sm">
-              <span className="text-muted">Body</span>
-              <textarea
-                required
-                rows={4}
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
-                className="rounded-md border border-line bg-background px-2 py-1.5"
-              />
-            </label>
-            <label className="flex flex-col gap-1 text-sm">
-              <span className="text-muted">Tags</span>
-              <input
-                value={tags}
-                onChange={(e) => setTags(e.target.value)}
-                placeholder="space or comma separated"
-                className="rounded-md border border-line bg-background px-2 py-1.5"
-              />
-            </label>
-            <button
-              type="submit"
-              disabled={saving}
-              className="mt-1 rounded-md bg-accent px-3 py-2 text-sm font-medium text-white disabled:opacity-60"
-            >
-              {saving ? "Saving…" : "Add note"}
-            </button>
-          </form>
+              </CardDescription>
+            </CardHeader>
+            <form onSubmit={onAddNote}>
+              <CardContent>
+                <FieldGroup>
+                  <Field>
+                    <FieldLabel htmlFor="note-title">Title</FieldLabel>
+                    <Input
+                      id="note-title"
+                      required
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                  </Field>
+                  <Field>
+                    <FieldLabel htmlFor="note-body">Body</FieldLabel>
+                    <Textarea
+                      id="note-body"
+                      required
+                      rows={4}
+                      value={body}
+                      onChange={(e) => setBody(e.target.value)}
+                    />
+                  </Field>
+                  <Field>
+                    <FieldLabel htmlFor="note-tags">Tags</FieldLabel>
+                    <Input
+                      id="note-tags"
+                      value={tags}
+                      onChange={(e) => setTags(e.target.value)}
+                      placeholder="space or comma separated"
+                    />
+                    <FieldDescription>
+                      Optional. Split on spaces or commas.
+                    </FieldDescription>
+                  </Field>
+                </FieldGroup>
+              </CardContent>
+              <CardFooter>
+                <Button type="submit" disabled={saving}>
+                  {saving ? <Spinner data-icon="inline-start" /> : null}
+                  {saving ? "Saving…" : "Add note"}
+                </Button>
+              </CardFooter>
+            </form>
+          </Card>
 
-          <section className="overflow-hidden rounded-lg bg-panel ring-1 ring-line">
-            <div className="border-b border-line px-4 py-3">
-              <h2 className="text-lg font-medium">Notes</h2>
-              <p className="text-sm text-muted">
+          <Card>
+            <CardHeader>
+              <CardTitle>Notes</CardTitle>
+              <CardDescription>
                 From <code className="font-mono">notes.json</code>.
-              </p>
-            </div>
-            <ul className="divide-y divide-line">
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
               {notes.length === 0 ? (
-                <li className="px-4 py-6 text-sm text-muted">No notes yet.</li>
+                <Empty>
+                  <EmptyHeader>
+                    <EmptyMedia variant="icon">
+                      <FileTextIcon />
+                    </EmptyMedia>
+                    <EmptyTitle>No notes yet</EmptyTitle>
+                    <EmptyDescription>
+                      Add one on the left, or ask the companion to write it.
+                    </EmptyDescription>
+                  </EmptyHeader>
+                </Empty>
               ) : (
-                notes.map((n) => (
-                  <li key={n.id} className="px-4 py-3">
-                    <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <h3 className="font-medium">{n.title}</h3>
-                      <span className="font-mono text-[11px] text-muted">
-                        {String(n.updated_at ?? n.created_at).slice(0, 19)}
-                      </span>
-                    </div>
-                    <p className="mt-1 text-sm text-muted whitespace-pre-wrap">
-                      {n.body}
-                    </p>
-                    {n.tags?.length ? (
-                      <p className="mt-1 font-mono text-[11px] text-muted">
-                        {n.tags.join(" ")}
-                      </p>
-                    ) : null}
-                  </li>
-                ))
+                <ul className="flex flex-col">
+                  {notes.map((n, i) => (
+                    <li key={n.id}>
+                      {i > 0 ? <Separator /> : null}
+                      <div className="flex flex-col gap-2 py-4 first:pt-0 last:pb-0">
+                        <div className="flex flex-wrap items-baseline justify-between gap-2">
+                          <h3 className="font-medium">{n.title}</h3>
+                          <span className="font-mono text-xs text-muted-foreground">
+                            {String(n.updated_at ?? n.created_at).slice(0, 19)}
+                          </span>
+                        </div>
+                        <p className="text-sm whitespace-pre-wrap text-muted-foreground">
+                          {n.body}
+                        </p>
+                        {n.tags?.length ? (
+                          <div className="flex flex-wrap gap-1">
+                            {n.tags.map((tag) => (
+                              <Badge key={tag} variant="secondary">
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               )}
-            </ul>
-          </section>
+            </CardContent>
+          </Card>
         </div>
       )}
 
-      <CompanionPanel
-        open={companionOpen}
-        onClose={() => setCompanionOpen(false)}
-      />
+      <CompanionPanel open={companionOpen} onOpenChange={setCompanionOpen} />
     </div>
   );
 }
