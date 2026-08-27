@@ -11,4 +11,6 @@ npm run dev
 
 Companion needs AI Gateway: `.agents/skills/provision-vercel`.
 
-Smoke: `GET /api/notes` and `GET /eve/v1/health`.
+After clone, reshape notes into your domain: `.agents/skills/reshape-domain` (not a substitute for provision skills).
+
+Smoke: `GET /api/notes` (or your domain list route after reshape) and `GET /eve/v1/health`.

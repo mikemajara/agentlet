@@ -20,7 +20,7 @@ npm install
 npm run dev
 ```
 
-`STORAGE_BACKEND=local` in `.env.local` runs without cloud credentials. Companion still needs Gateway: point an agent at `.agents/skills/provision-vercel`.
+`STORAGE_BACKEND=local` in `.env.local` runs without cloud credentials. Companion still needs Gateway: point an agent at `.agents/skills/provision-vercel`. After clone, reshape notes into your domain with `.agents/skills/reshape-domain`.
 
 ## Local (this repo)
 

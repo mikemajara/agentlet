@@ -8,12 +8,12 @@
 - **How people get an app** (no custom CLI):
   1. **Primary:** Vercel Deploy Button — clone only `examples/notes` into their GitHub repo, provision Blob in the same flow (`stores=[{"type":"blob"}]`). Production Companion via AI Gateway OIDC.
   2. **Terminal:** `npx create-next-app my-app -e https://github.com/mikemajara/agentlet/tree/main/examples/notes` (create-next-app, not our CLI).
-  3. **Prompt/skill (later):** after clone/deploy, shape the notes app into theirs. GitHub #2. Skill ships *inside* the example.
+  3. **Prompt/skill:** after clone/deploy, shape the notes app into theirs. GitHub #2. Skill: `examples/notes/.agents/skills/reshape-domain`.
 - **Removed** `packages/create-agent-files`. Path is Deploy Button + `create-next-app -e` on `examples/notes`.
-- **Examples:** first cut is `examples/notes` only. No other example types in this backlog. GitHub “Use this template” on the whole repo is not a path (it would copy sibling examples).
+- **Examples:** the completed first cut is `examples/notes`. The next showcase is an agentic NYC taxi dataset example using DuckDB over public Parquet data (GitHub #8); DuckDB stays isolated to that advanced example and does not return to the default starter.
 - **UI:** shadcn, neutral/zinc, no cream/green branded theme.
 - **Self-modification:** not in this cut. Next session. Clone-into-their-GitHub is the foundation.
-- **Living docs** describe only the current product. Do not mention DuckDB, Bolsa, CSV catalogs, `run_sql`, or “we used to…”. Historical plan: `.backlog/plans/PLAN-json-file-state.md` (archived). Product umbrella: `.backlog/prds/PRD-agentlet.md`. Execution: `.backlog/plans/PLAN-agentlet.md`.
+- **Living docs** describe only the current product. Do not reintroduce DuckDB, CSV catalogs, or `run_sql` into the core notes starter; DuckDB belongs only in specialized examples such as GitHub #8. Historical plan: `.backlog/plans/PLAN-json-file-state.md` (archived). Product umbrella: `.backlog/prds/PRD-agentlet.md`. Execution: `.backlog/plans/PLAN-agentlet.md`.
 
 ## Blockers
 

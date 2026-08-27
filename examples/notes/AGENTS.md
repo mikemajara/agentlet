@@ -8,9 +8,9 @@ Eve companion + JSON files on Blob / R2 / local.
 | --- | --- |
 | Link Vercel + AI Gateway so Companion works (OIDC pull); optional deploy | `.agents/skills/provision-vercel` |
 | Create Blob store / switch to R2 or local | `.agents/skills/provision-storage` |
-| Add a new entity | Add a JSON module under `src/lib/` + domain tools; seed via `ensureSeeded` / missing-key fallback |
+| Turn notes into the user's domain (new JSON + tools + UI) | `.agents/skills/reshape-domain` |
 
-`provision-vercel` Definition of Done = linked project + Gateway creds (`VERCEL_OIDC_TOKEN` via `vercel env pull`, or `AI_GATEWAY_API_KEY`) + `GET /api/notes` + `/eve/v1/health`. It does **not** include machine-specific HTTPS (Caddy / `*.mgl.dev` / portless).
+`provision-vercel` Definition of Done = linked project + Gateway creds (`VERCEL_OIDC_TOKEN` via `vercel env pull`, or `AI_GATEWAY_API_KEY`) + domain list `GET` (default `/api/notes`) + `/eve/v1/health`. It does **not** include machine-specific HTTPS (Caddy / `*.mgl.dev` / portless).
 
 ## Local
 

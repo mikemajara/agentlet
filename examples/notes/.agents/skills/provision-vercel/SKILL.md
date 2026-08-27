@@ -20,7 +20,7 @@ From the app root, after this skill:
 1. `.vercel/` exists (project linked)
 2. `.env.local` has **either** a non-empty `VERCEL_OIDC_TOKEN` (preferred) **or** `AI_GATEWAY_API_KEY`
 3. `npm run dev` (or `pnpm`) serves the app on its configured host port
-4. Smoke: `GET /api/notes` and `GET /eve/v1/health` succeed
+4. Smoke: `GET /api/notes` (or `/api/<plural>` after **reshape-domain**) and `GET /eve/v1/health` succeed
 5. Companion can start a session (Gateway auth works)
 
 **Out of scope (do not do here):** Caddy, `*.mgl.dev`, UFW, portless, or any

@@ -12,4 +12,4 @@ The runnable app lives in [`examples/notes`](./examples/notes). Root README is t
 - **State:** JSON files under `STORAGE_PREFIX` (seed demo: `notes.json`) via `src/lib/json-store.ts` + domain modules
 - **Agent:** `agent/` Eve tools — `list_notes`, `get_note`, `add_note`, `update_note`
 
-Provision skills ship **inside the example**: `examples/notes/.agents/skills/provision-vercel` and `provision-storage`.
+Provision skills ship **inside the example**: `examples/notes/.agents/skills/provision-vercel`, `provision-storage`, and post-clone `reshape-domain`.
