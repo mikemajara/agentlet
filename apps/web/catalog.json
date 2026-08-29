@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "tagVocabulary": [
+    { "id": "starter", "label": "Starter" },
+    { "id": "memory", "label": "Memory" },
+    { "id": "self-modifying", "label": "Self-modifying" }
+  ],
+  "listings": [
+    {
+      "id": "notes",
+      "title": "Notes",
+      "description": "Talk to an Eve companion over notes.json. JSON files on Vercel Blob, R2, or local ./data.",
+      "examplePath": "examples/notes",
+      "tags": ["starter"],
+      "deployUrl": "https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmikemajara%2Fagentlet%2Ftree%2Fmain%2Fexamples%2Fnotes&project-name=agentlet-notes&repository-name=agentlet-notes&stores=%5B%7B%22type%22%3A%22blob%22%7D%5D",
+      "createCommand": "npx create-next-app@latest my-app -e https://github.com/mikemajara/agentlet/tree/main/examples/notes"
+    }
+  ]
+}
