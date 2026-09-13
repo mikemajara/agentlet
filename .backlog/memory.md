@@ -6,6 +6,24 @@
 - **2026-09-13:** [#16](https://github.com/mikemajara/agentlet/issues/16) GitHub App manifest Allow in `examples/notes` (private Blob, grant JSON on object storage, preview/local cannot complete Allow). [#14](https://github.com/mikemajara/agentlet/issues/14) companion git write via installation token on production after grant. [#17](https://github.com/mikemajara/agentlet/issues/17) still needs a human fresh-account pass.
 - **2026-09-13:** Parked in-app GitHub Allow / companion reshape as the *next* slice. First working bar is Deploy Button → Vercel site actually loads (notes + companion). Allow UI is off unless `ENABLE_GITHUB_ALLOW=true`. Blob adapter retries public if the store rejects private access so a default Deploy store does not 500 the homepage.
 - **2026-09-13:** Happy path is Deploy → open the site. No Storage-tab / “connect Blob then redeploy” instructions. Notes adapter calls `@vercel/blob` and lets the SDK resolve OIDC + `BLOB_STORE_ID` / token at request time (do not throw before the SDK). Deploy clones are a snapshot of `examples/notes` at click time; an already-cloned repo does not pick up later template commits.
+- **2026-09-14:** **Checkpoint `checkpoint-deploy-notes`.** Human Deploy (existing GitHub + Vercel) of current `examples/notes`: clone, typecheck/`next build`, site loads, notes + companion. GitHub Allow UI stays parked (`ENABLE_GITHUB_ALLOW`). #17/#16/#14 were closed with PR #18; that close is **not** this checkpoint and is **not** the fresh-account journey. Do not regress Deploy→load to chase Allow.
+
+## Checkpoint (locked 2026-09-14)
+
+Git tag **`checkpoint-deploy-notes`** on `main`. Template SHA at lock: see that tag.
+
+**In (do not regress)**
+
+- Deploy Button clones **only** `examples/notes`, requests private Blob (`stores=[{type:blob,access:private}]`).
+- Production `next build` typechecks. Tests are excluded from that graph; `cd examples/notes && npm test && npm run build` is the pre-click check (GitHub Actions `notes` on template changes).
+- Open the deployment: notes list seeds, companion is there. No Storage-tab / paste-token happy path. `@vercel/blob` auth at request time (OIDC + store id and/or token).
+- GitHub Allow UI off unless `ENABLE_GITHUB_ALLOW=true`.
+
+**Out (next slice, not this bar)**
+
+- Brand-new GitHub + Vercel pair composing Allow + reshape ([#17](https://github.com/mikemajara/agentlet/issues/17)).
+- In-app Allow ([#16](https://github.com/mikemajara/agentlet/issues/16)) and companion git write ([#14](https://github.com/mikemajara/agentlet/issues/14)) as first-run.
+- Catalog go-live ([#10](https://github.com/mikemajara/agentlet/issues/10)).
 
 ## Decisions
 

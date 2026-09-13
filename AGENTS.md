@@ -8,9 +8,17 @@ GitHub: `mikemajara/agentlet`. Not an npm `create-*` product.
 
 Do not teach GitHub “Use this template” on this whole repository.
 
+## Current bar (checkpoint 2026-09-14)
+
+Git tag **`checkpoint-deploy-notes`**. Do not regress this to work on Allow or extra examples.
+
+**Proven:** Deploy Button → notes clone + Blob → production site loads (notes + companion). Pre-click: `cd examples/notes && npm test && npm run build`. Allow UI parked (`ENABLE_GITHUB_ALLOW`). Clones are a snapshot; they do not pick up later template commits.
+
+**Not this bar:** in-app GitHub Allow, companion reshape, fresh-account [#17](https://github.com/mikemajara/agentlet/issues/17). Those issues were closed with PR #18; do not treat that as the journey passing.
+
 ## v1 (locked — relock 2026-09-12)
 
-Ship **self-drive**, not a catalog-first marketplace and not a pile of extra examples. **v1 is done when [#17](https://github.com/mikemajara/agentlet/issues/17) passes.**
+Ship **self-drive**, not a catalog-first marketplace and not a pile of extra examples. **v1 is done when [#17](https://github.com/mikemajara/agentlet/issues/17) actually passes** (fresh GitHub + Vercel, Allow, reshape) — that is **after** this checkpoint, not instead of it.
 
 **In**
 
@@ -19,7 +27,7 @@ Ship **self-drive**, not a catalog-first marketplace and not a pile of extra exa
 - **Allow:** in-app **Allow this app to edit its own code** — GitHub create-app + install-on-this-one-repo (manifest-style). No PAT. No Vercel Connect for this grant. Implementation: [#16](https://github.com/mikemajara/agentlet/issues/16).
 - **Change the app:** companion modifies git on the default branch; Vercel redeploys. Implementation: [#14](https://github.com/mikemajara/agentlet/issues/14).
 - First example: [`examples/notes`](./examples/notes). Self-contained Next.js apps (`package.json`, `agent/`, provision skills). No workspace packages Deploy Button would miss.
-- Same stack: Eve + `files-sdk` + shadcn neutral/zinc. Cheap Hobby Vercel + Blob + Gateway.
+- Same stack: Eve + `@vercel/blob` (notes) / `files-sdk` (R2) + shadcn neutral/zinc. Cheap Hobby Vercel + Blob + Gateway.
 
 **Out (do not start unless a later issue says so)**
 
@@ -37,7 +45,7 @@ Examples stay independently deployable. Do not introduce workspace packages.
 
 - **Catalog site (later):** [`apps/web`](./apps/web) — listings from `catalog.json` (git). Tools: `list_agentlets`, `get_agentlet`.
 - **Examples:** self-contained Next apps under `examples/*`.
-- **Storage (examples):** `files-sdk` — Vercel Blob (default), Cloudflare R2, or local `./data`
+- **Storage (examples):** Vercel Blob via `@vercel/blob` (default), Cloudflare R2 via `files-sdk`, or local `./data`
 - **State (examples):** JSON files under `STORAGE_PREFIX` via `src/lib/json-store.ts` + domain modules
 - **Agent:** `agent/` Eve tools — `list_*` / `get_*` / `add_*` / `update_*` for that domain
 
