@@ -6,6 +6,8 @@ issue: https://github.com/mikemajara/agentlet/issues/9
 created_at: 2026-08-27T21:53:00Z
 ---
 
+> **HISTORICAL (catalog-first v1).** [#9](https://github.com/mikemajara/agentlet/issues/9) shipped the catalog app; it is **not** the current user first-run. Current v1: private Deploy of `examples/notes` → talk → Allow ([#16](https://github.com/mikemajara/agentlet/issues/16)) → companion changes app ([#14](https://github.com/mikemajara/agentlet/issues/14)). Living lock: [`.backlog/memory.md`](../memory.md). Catalog go-live is later ([#10](https://github.com/mikemajara/agentlet/issues/10)).
+
 # Agentlet marketplace
 
 Product umbrella for the **v1 public site**: a free catalog of deployable agentlets, where the catalog itself is an agentlet.

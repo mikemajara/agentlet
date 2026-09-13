@@ -4,6 +4,8 @@ status: done
 created_at: 2026-08-26
 ---
 
+> **HISTORICAL.** This PRD describes the first kit cut (2026-08-26). Current v1 lock: [`.backlog/memory.md`](../memory.md) and GitHub [#15](https://github.com/mikemajara/agentlet/issues/15) (docs), [#16](https://github.com/mikemajara/agentlet/issues/16) (Allow), [#14](https://github.com/mikemajara/agentlet/issues/14) (companion changes app), [#17](https://github.com/mikemajara/agentlet/issues/17) (v1 done). Do not treat “self-modification (next session)” below as current out-of-scope — relock makes Allow + companion change the production path.
+
 # PRD: agentlet
 
 Umbrella for turning this repo into **agentlet**: a tiny kit for a cheap, quick agent web app. Locked in conversation 2026-08-26. Execution order: `.backlog/plans/PLAN-agentlet.md`.

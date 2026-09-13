@@ -1,5 +1,10 @@
 # Backlog Memory
 
+## Changelog
+
+- **2026-09-13:** Root living docs relocked to self-drive v1 (Deploy → talk → Allow → companion changes app) via GitHub [#15](https://github.com/mikemajara/agentlet/issues/15). README, AGENTS, notes README, PRD/plan banners, repo description.
+- **2026-09-13:** [#16](https://github.com/mikemajara/agentlet/issues/16) GitHub App manifest Allow in `examples/notes` (private Blob, grant JSON on object storage, preview/local cannot complete Allow). [#14](https://github.com/mikemajara/agentlet/issues/14) companion git write via installation token on production after grant. [#17](https://github.com/mikemajara/agentlet/issues/17) still needs a human fresh-account pass.
+
 ## Decisions
 
 - **Product name: agentlet** (locked 2026-08-26). GitHub: `mikemajara/agentlet`. Not an npm `create-*` product.

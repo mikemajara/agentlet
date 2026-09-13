@@ -120,7 +120,13 @@ Use the port from `package.json` `dev` script (template default `3460`). Expect
 notes JSON and Eve `ok`/`ready`. Then open Companion and confirm a turn does
 not fail with “AI Gateway received no credentials.”
 
-### 6. Deploy (only if requested)
+### 6. Vercel Authentication (production happy path)
+
+After the first Deploy, enable **Deployment Protection → Vercel Authentication** for **all deployments** (Hobby). The owner signs in with the **same Vercel account** they used to Deploy. There is no users table in the app.
+
+This is separate from Eve `none()` browser auth and from AI Gateway OIDC (server→models). Do not remove `none()` — production chat depends on it once Vercel Authentication is the gate.
+
+### 7. Deploy (only if requested)
 
 Default to **preview** unless the user explicitly asks for production:
 
@@ -141,7 +147,7 @@ curl -sS "$URL/api/notes" | head -c 400
 curl -sS "$URL/eve/v1/health"
 ```
 
-### 7. Report
+### 8. Report
 
 Return: project name, whether OIDC or API key is in use, local smoke results,
 any missing env, and deployment URL(s) **only if** step 6 ran.

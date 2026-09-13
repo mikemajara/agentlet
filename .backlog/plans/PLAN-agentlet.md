@@ -5,6 +5,8 @@ prd: .backlog/prds/PRD-agentlet.md
 created_at: 2026-08-26
 ---
 
+> **HISTORICAL.** Execution plan for the first kit cut (issues #4–#7). Current v1 lock: [`.backlog/memory.md`](../memory.md) + [#15](https://github.com/mikemajara/agentlet/issues/15) / [#16](https://github.com/mikemajara/agentlet/issues/16) / [#14](https://github.com/mikemajara/agentlet/issues/14) / [#17](https://github.com/mikemajara/agentlet/issues/17).
+
 # Plan: agentlet cut
 
 Sequence for the locked PRD. Do not re-litigate name, CLI, examples, or style.
