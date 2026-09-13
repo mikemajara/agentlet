@@ -38,9 +38,9 @@ describe("v1 journey composition (#17)", () => {
       join(notesRoot, "src/lib/storage/vercel-blob.ts"),
       "utf8",
     );
-    expect(blob).toContain('requestedAccess');
-    expect(blob).toContain('"private"');
-    expect(blob).toContain("isAccessMismatch");
+    expect(blob).toContain("blobCredentialsMessage");
+    expect(blob).toContain("findBlobReadWriteToken");
+    expect(blob).toContain("requestedAccess");
   });
 
   it("does not introduce an app users table", () => {
