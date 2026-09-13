@@ -1,10 +1,17 @@
 # Backlog Inbox
 
-Raw ideas not yet promoted to GitHub Issues.
+Promoted. Canonical tracker is GitHub.
 
-## Inbox
+## v1 self-drive (2026-09-12)
 
-- Marketplace catalog (v1 site): https://github.com/mikemajara/agentlet/issues/9 — umbrella `.backlog/prds/PRD-marketplace.md`.
-- [ ] **Later (not v1):** self-modification of a deployed agentlet (edit its own GitHub repo). Foundation: Deploy Button already clones into the user’s GitHub. Distinct from #2 (local/clone coding-agent skill). Catalog tag later, not a v1 listing.
-- [ ] [feat] [medium] **Hotel front desk procedures assistant example (not v1).** Shared web app for front-desk procedures + agent Q&A from that knowledge. Candidate later `memory` listing.
-- [ ] [feat] [medium] **Clinician protocol knowledge-base example (not v1).** Shared GP-practice assistant with citations, roles, PHI boundaries, human approval. Candidate later `memory` listing.
+- Product lock in living docs: #15
+- In-app GitHub Allow (write to the clone): #16
+- Companion changes the running app after Allow: #14
+- Privacy: private GitHub repo + Vercel Authentication on all deployments. No app user DB. OIDC is for models only.
+
+## Later (not v1)
+
+- Catalog go-live: #10
+- NYC taxi: #8
+- Hotel front desk: #12
+- Clinician protocols: #13
