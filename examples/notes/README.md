@@ -25,4 +25,10 @@ Companion needs AI Gateway: `.agents/skills/provision-vercel`.
 
 **Developer/local only:** `.agents/skills/reshape-domain` (closed [#2](https://github.com/mikemajara/agentlet/issues/2)) reshapes notes on your machine via a coding agent — **not** the production happy path after Deploy.
 
+Before a Deploy Button click, same checks Vercel runs:
+
+```bash
+npm test && npm run build
+```
+
 Smoke: `GET /api/notes` (or your domain list route after reshape) and `GET /eve/v1/health`.

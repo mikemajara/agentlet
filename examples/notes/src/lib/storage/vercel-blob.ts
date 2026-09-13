@@ -110,7 +110,7 @@ export const vercelBlobAdapter: StorageAdapter = {
         throw err;
       }
       const result = await get(key, { ...commandOptions(), access });
-      if (result.statusCode !== 200 || !result.stream) return null;
+      if (!result || result.statusCode !== 200 || !result.stream) return null;
       return new Response(result.stream).text();
     });
   },

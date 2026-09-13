@@ -56,6 +56,7 @@
 ## Gotchas
 
 - Concurrent JSON writes: last-write-wins; in-process lock only. Git commits can race the same way if two turns write at once — last push wins.
+- `next build` typechecks `tsconfig` includes. Keep `**/*.test.ts` out of that config; `npm test && npm run build` in `examples/notes` is the same TypeScript pass Vercel runs — use it instead of deleting GitHub clones.
 - Deploy-to-Vercel needs GitHub + Vercel. Blob + Gateway are cheap, not $0 forever. Local Companion still needs `vercel link` + `env pull`.
 - Name collision note (non-blocking): “agentlet” appears in a Substack essay and a tiny PyPI stub. We are using it anyway.
 - Clones used to copy whole GitHub `main` via `create-agent-files`. Now Deploy / `-e` clone the notes example only.

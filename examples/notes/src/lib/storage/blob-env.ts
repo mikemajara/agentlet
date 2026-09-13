@@ -1,6 +1,9 @@
 const TOKEN_PREFIX = "vercel_blob_rw_";
 const STORE_ID_RE = /^[A-Za-z0-9]{8,}$/;
 
+/** Env-like map. Not `ProcessEnv` — tests pass partial objects and Next's ProcessEnv requires `NODE_ENV`. */
+export type EnvMap = Record<string, string | undefined>;
+
 export function deriveStoreIdFromToken(token: string): string | undefined {
   const trimmed = token.trim();
   if (!trimmed.startsWith(TOKEN_PREFIX)) return undefined;
@@ -12,7 +15,7 @@ export function deriveStoreIdFromToken(token: string): string | undefined {
 
 /** Read-write token from the default name or any `*_BLOB_READ_WRITE_TOKEN` / raw token value. */
 export function findBlobReadWriteToken(
-  env: NodeJS.ProcessEnv = process.env,
+  env: EnvMap = process.env,
 ): string | undefined {
   const direct = env.BLOB_READ_WRITE_TOKEN?.trim();
   if (direct) return direct;
@@ -29,9 +32,7 @@ export function findBlobReadWriteToken(
   return undefined;
 }
 
-export function findBlobStoreId(
-  env: NodeJS.ProcessEnv = process.env,
-): string | undefined {
+export function findBlobStoreId(env: EnvMap = process.env): string | undefined {
   const direct = env.BLOB_STORE_ID?.trim();
   if (direct) return direct;
 
@@ -50,8 +51,6 @@ export function blobCredentialsMessage(): string {
   return "Vercel Blob was not attached when this app was deployed. The Deploy Button is supposed to create and connect the store; this is a template bug, not a dashboard step.";
 }
 
-export function vercelBlobConfigured(
-  env: NodeJS.ProcessEnv = process.env,
-): boolean {
+export function vercelBlobConfigured(env: EnvMap = process.env): boolean {
   return Boolean(findBlobReadWriteToken(env) || findBlobStoreId(env));
 }

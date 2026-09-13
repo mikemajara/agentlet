@@ -1,0 +1,30 @@
+name: notes
+
+on:
+  push:
+    paths:
+      - "examples/notes/**"
+      - ".github/workflows/notes.yml"
+  pull_request:
+    paths:
+      - "examples/notes/**"
+      - ".github/workflows/notes.yml"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: examples/notes
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: examples/notes/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
