@@ -44,6 +44,16 @@ function autoPostHtml(manifest: string, state: string): string {
 }
 
 export async function GET() {
+  try {
+    return await startAllow();
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : "Could not start GitHub Allow.";
+    return NextResponse.json({ error: message }, { status: 503 });
+  }
+}
+
+async function startAllow() {
   await ensureSeeded();
 
   const availability = checkGitHubAllowAvailability();

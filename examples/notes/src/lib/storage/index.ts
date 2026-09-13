@@ -20,11 +20,23 @@ function requestedBackend(): StorageBackendName {
  * Falls back to local when the chosen cloud backend has no credentials
  * (so `npm run dev` works offline out of the box).
  */
+function onVercel(): boolean {
+  return Boolean(process.env.VERCEL);
+}
+
 export function storageBackend(): StorageBackendName {
   const requested = requestedBackend();
   if (requested === "local") return "local";
-  if (requested === "r2") return r2Configured() ? "r2" : "local";
-  if (requested === "vercel") return vercelConfigured() ? "vercel" : "local";
+  // On Vercel, never silently fall back to ./data (the serverless FS is read-only
+  // and would 500 the homepage on seed). Surface a Blob/R2 credential error instead.
+  if (requested === "r2") {
+    if (r2Configured()) return "r2";
+    return onVercel() ? "r2" : "local";
+  }
+  if (requested === "vercel") {
+    if (vercelConfigured()) return "vercel";
+    return onVercel() ? "vercel" : "local";
+  }
   return "local";
 }
 

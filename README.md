@@ -13,8 +13,8 @@ You need a **GitHub** account and a **Vercel** account linked to GitHub (“Cont
 1. **Deploy** — button below clones **only** [`examples/notes`](./examples/notes) into **your private** GitHub repo, provisions **private** Blob storage, and creates a Vercel project. It does **not** clone this whole catalog repo. Do **not** use GitHub “Use this template” on `mikemajara/agentlet`.
 2. **Open the site** — Vercel Authentication protects **all** deployments (Hobby). Sign in with the **same Vercel account** you used to Deploy. There is no users table and no app password. The site is **not** a public URL anyone can chat on.
 3. **Talk** — use the companion. Production models use AI Gateway via OIDC (server→models). That is **not** user login; you do not paste a model API key on the happy path.
-4. **Allow** — in the app, **Allow this app to edit its own code** (GitHub create-app + install on this one repo). No personal access token. No Vercel Connect dashboard for this grant. Implementation: [#16](https://github.com/mikemajara/agentlet/issues/16).
-5. **Ask** — tell the companion what you want (e.g. “turn this into a task manager”). It changes the app; git on the default branch updates; Vercel redeploys. Implementation: [#14](https://github.com/mikemajara/agentlet/issues/14).
+4. **Allow** — parked. In-app GitHub write is not the first-run bar yet (`ENABLE_GITHUB_ALLOW`). Implementation remains [#16](https://github.com/mikemajara/agentlet/issues/16) / [#14](https://github.com/mikemajara/agentlet/issues/14).
+5. **Ask** — after Allow is unparked, tell the companion what you want (e.g. “turn this into a task manager”).
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmikemajara%2Fagentlet%2Ftree%2Fmain%2Fexamples%2Fnotes&project-name=agentlet-notes&repository-name=agentlet-notes&stores=%5B%7B%22type%22%3A%22blob%22%2C%22access%22%3A%22private%22%7D%5D)
 

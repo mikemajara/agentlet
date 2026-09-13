@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { stripSecrets, toPublicStatus } from "./public-dto";
+import { defaultAllowStatus, stripSecrets, toPublicStatus } from "./public-dto";
 import { createEmptyGrantRecord } from "./state";
 
 describe("github-grant public DTO", () => {
@@ -31,4 +31,12 @@ describe("github-grant public DTO", () => {
     expect(JSON.stringify(status)).not.toContain("secret");
     expect(JSON.stringify(status)).not.toContain("pem");
   });
+
+  it("defaultAllowStatus is safe to render with no grant file", () => {
+    const status = defaultAllowStatus();
+    expect(status.granted).toBe(false);
+    expect(status.status).toBe("not_granted");
+    expect(JSON.stringify(status)).not.toContain("pem");
+  });
 });
+

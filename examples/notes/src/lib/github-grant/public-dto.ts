@@ -44,6 +44,20 @@ export function stripSecrets<T extends Record<string, unknown>>(value: T): Parti
   return out as Partial<T>;
 }
 
+/** Safe homepage/tool fallback when grant storage is unavailable. */
+export function defaultAllowStatus(): GitHubAllowPublicStatus {
+  return toPublicStatus(
+    {
+      schemaVersion: 1,
+      status: "not_granted",
+      expectedOwner: "",
+      expectedRepo: "",
+    },
+    null,
+    null,
+  );
+}
+
 export function toPublicStatus(
   record: GitHubGrantRecord,
   expected: ExpectedRepo | null,
@@ -56,7 +70,10 @@ export function toPublicStatus(
   const startUrl =
     canStart && origin ? `${origin}/api/github-allow/start` : undefined;
   const vercelEnv = (process.env.VERCEL_ENV ?? "").trim().toLowerCase();
-  const visible = available || vercelEnv === "preview";
+  const allowEnabled =
+    process.env.ENABLE_GITHUB_ALLOW === "1" ||
+    process.env.ENABLE_GITHUB_ALLOW === "true";
+  const visible = allowEnabled && (available || vercelEnv === "preview");
 
   return {
     status: normalized.status,

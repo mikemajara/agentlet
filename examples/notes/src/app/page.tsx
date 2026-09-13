@@ -1,4 +1,5 @@
 import { WorkspaceApp } from "@/components/WorkspaceApp";
+import { defaultAllowStatus } from "@/lib/github-grant/public-dto";
 import { getGitHubAllowStatus } from "@/lib/github-grant/status-server";
 import { listNotes } from "@/lib/notes";
 import { storageBackend } from "@/lib/storage";
@@ -17,7 +18,15 @@ export default async function Home() {
     initialError = err instanceof Error ? err.message : "Failed to load";
   }
 
-  const allowStatus = await getGitHubAllowStatus();
+  let allowStatus = defaultAllowStatus();
+  try {
+    allowStatus = await getGitHubAllowStatus();
+  } catch (err) {
+    if (!initialError) {
+      initialError =
+        err instanceof Error ? err.message : "Failed to load GitHub Allow status";
+    }
+  }
 
   return (
     <WorkspaceApp
