@@ -29,7 +29,7 @@ describe("v1 journey composition (#17)", () => {
     expect(readme).toContain("access");
     expect(readme).toContain("private");
     expect(readme).toMatch(/repository-url=https%3A%2F%2Fgithub.com%2Fmikemajara%2Fagentlet%2Ftree%2Fmain%2Fexamples%2Fnotes/);
-    expect(readme).toMatch(/%22access%22%3A%22private%22/);
+    expect(readme).toMatch(/%22type%22%3A%22blob%22%2C%22access%22%3A%22private%22/);
     expect(readme).toMatch(/Do \*\*not\*\* use GitHub “Use this template”/);
   });
 

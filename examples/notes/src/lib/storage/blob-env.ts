@@ -47,7 +47,7 @@ export function findBlobStoreId(
 }
 
 export function blobCredentialsMessage(): string {
-  return "Vercel Blob is not connected to this deployment. In the Vercel project open Storage, connect (or create) a Blob store, then Redeploy. The app needs BLOB_READ_WRITE_TOKEN or BLOB_STORE_ID.";
+  return "Vercel Blob was not attached when this app was deployed. The Deploy Button is supposed to create and connect the store; this is a template bug, not a dashboard step.";
 }
 
 export function vercelBlobConfigured(

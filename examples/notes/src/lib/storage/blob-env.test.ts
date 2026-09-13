@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  blobCredentialsMessage,
   deriveStoreIdFromToken,
   findBlobReadWriteToken,
   findBlobStoreId,
@@ -37,5 +38,11 @@ describe("blob-env", () => {
     expect(
       vercelBlobConfigured({ VERCEL_OIDC_TOKEN: "oidc-token-value" }),
     ).toBe(false);
+  });
+
+  it("does not tell the user to open the Vercel Storage tab", () => {
+    expect(blobCredentialsMessage().toLowerCase()).not.toMatch(
+      /storage tab|open storage/,
+    );
   });
 });

@@ -13,9 +13,36 @@ import {
   vercelBlobConfigured,
 } from "./blob-env";
 
-export { vercelBlobConfigured as vercelConfigured };
+export { vercelBlobConfigured };
 
 type BlobAccess = "public" | "private";
+
+type BlobAuth =
+  | { token: string }
+  | { storeId: string }
+  | Record<string, never>;
+
+export function vercelConfigured(): boolean {
+  return vercelBlobConfigured();
+}
+
+/**
+ * Prefer an explicit token so OIDC-without-storeId cannot block Deploy Button
+ * auth. If we only have a store id, pass that and let @vercel/blob use OIDC
+ * (`getVercelOidcToken`). If we find neither, pass nothing — the SDK still
+ * reads `process.env` and OIDC at call time (do not throw first).
+ */
+function commandOptions(): BlobAuth {
+  // Keep these identifiers so Vercel attaches the vars to the function.
+  void process.env.BLOB_READ_WRITE_TOKEN;
+  void process.env.BLOB_STORE_ID;
+
+  const token = findBlobReadWriteToken();
+  if (token) return { token };
+  const storeId = findBlobStoreId();
+  if (storeId) return { storeId };
+  return {};
+}
 
 let resolvedAccess: BlobAccess | null = null;
 
@@ -41,25 +68,27 @@ function isAccessMismatch(err: unknown): boolean {
   );
 }
 
-function commandOptions(): { token: string } | { storeId: string } {
-  const token = findBlobReadWriteToken();
-  if (token) return { token };
-  const storeId = findBlobStoreId();
-  if (storeId) return { storeId };
-  throw new Error(blobCredentialsMessage());
+function isMissingCredentials(err: unknown): boolean {
+  const message = (
+    err instanceof Error ? err.message : String(err)
+  ).toLowerCase();
+  return (
+    message.includes("credentials") ||
+    message.includes("blob_read_write") ||
+    message.includes("blob_store_id")
+  );
 }
 
 async function withAccess<T>(fn: (access: BlobAccess) => Promise<T>): Promise<T> {
-  if (!vercelBlobConfigured()) {
-    throw new Error(blobCredentialsMessage());
-  }
-
   const preferred = resolvedAccess ?? requestedAccess();
   try {
     const result = await fn(preferred);
     resolvedAccess = preferred;
     return result;
   } catch (err) {
+    if (isMissingCredentials(err)) {
+      throw new Error(blobCredentialsMessage());
+    }
     if (resolvedAccess || !isAccessMismatch(err)) throw err;
     const fallback = otherAccess(preferred);
     const result = await fn(fallback);
