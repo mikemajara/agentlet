@@ -10,7 +10,7 @@ function getFiles(): Files {
     adapter: vercelBlob({
       addRandomSuffix: false,
       allowOverwrite: true,
-      access: "public",
+      access: "private",
     }),
   });
   return _files;
@@ -42,7 +42,12 @@ export const vercelBlobAdapter: StorageAdapter = {
   async url(key, expiresInSeconds = 60) {
     const files = getFiles();
     if (!(await files.exists(key))) return null;
-    return files.url(key, { expiresIn: expiresInSeconds });
+    try {
+      return files.url(key, { expiresIn: expiresInSeconds });
+    } catch {
+      // Private Blob stores may reject url(); callers treat null as unavailable.
+      return null;
+    }
   },
   async listKeys(prefix) {
     const keys: string[] = [];

@@ -5,7 +5,8 @@ export default eveChannel({
   auth: [
     vercelOidc(),
     localDev(),
-    // Single-user sandbox: allow anonymous browser callers.
+    // Browser companion: Eve auth is `none()` so chat works without an app users table.
+    // Production gate is Vercel Authentication on all deployments (see README) — not an open URL.
     none(),
   ],
 });

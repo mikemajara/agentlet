@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import { FileTextIcon, RefreshCwIcon } from "lucide-react";
 import { CompanionPanel } from "@/components/CompanionPanel";
+import { GitHubAllowControl } from "@/components/GitHubAllowControl";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -32,6 +33,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
+import type { GitHubAllowPublicStatus } from "@/lib/github-grant/public-dto";
 
 type Note = {
   id: string;
@@ -46,12 +48,14 @@ type WorkspaceAppProps = {
   initialNotes: Note[];
   initialBackend: string;
   initialError: string | null;
+  initialAllowStatus: GitHubAllowPublicStatus;
 };
 
 export function WorkspaceApp({
   initialNotes,
   initialBackend,
   initialError,
+  initialAllowStatus,
 }: WorkspaceAppProps) {
   const [backend, setBackend] = useState(initialBackend);
   const [notes, setNotes] = useState(initialNotes);
@@ -138,6 +142,8 @@ export function WorkspaceApp({
           <code className="font-mono">./data</code> work too.
         </p>
       </header>
+
+      <GitHubAllowControl initialStatus={initialAllowStatus} />
 
       {error ? (
         <Alert variant="destructive">

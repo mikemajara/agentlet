@@ -17,7 +17,9 @@ If cloud credentials are missing, the factory **falls back to local** so `npm ru
 
 ## Vercel Blob (default)
 
-1. In the Vercel dashboard: Project → Storage → Create Blob store → connect to this project.
+Use a **private** Blob store (Deploy Button sets `access: private`). JSON state and GitHub grant credentials must not be world-readable.
+
+1. In the Vercel dashboard: Project → Storage → Create Blob store (private) → connect to this project.
 2. Copy the read-write token into `.env.local`:
 
 ```bash
