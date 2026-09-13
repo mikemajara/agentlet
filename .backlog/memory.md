@@ -32,7 +32,7 @@
 
 - **UI:** shadcn, neutral/zinc, no cream/green branded theme.
 
-- **Historical:** first kit `.backlog/prds/PRD-agentlet.md`; catalog `.backlog/prds/PRD-marketplace.md` + #9. Those describe a *prior* v1. Current lock is this file + GitHub issues #15, #16, #14.
+- **Historical:** first kit `.backlog/prds/PRD-agentlet.md`; catalog `.backlog/prds/PRD-marketplace.md` + #9. Those describe a *prior* v1. Current lock is this file + GitHub issues #15, #16, #14. **v1 is done when #17 passes** (fresh GitHub + Vercel journey).
 
 ## Blockers
 
