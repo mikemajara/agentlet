@@ -2,19 +2,15 @@
 
 Promoted. Canonical tracker is GitHub.
 
-## Current bar (2026-09-14)
+## Now (2026-09-15 human test)
 
-- Git tag `checkpoint-deploy-notes`: Deploy → notes + companion load. Allow UI parked.
+1. #16 + #14 — Allow journey (unpark, one GitHub App, pin clone, companion speaks on deny). One concern.
+2. #19 — first-run example is a todo tracker, not notes.
+3. #17 — still blocked; composition QA after the above.
 
-## Parked self-drive (open, status:blocked, phase:qa)
+## Later (not now)
 
-- In-app GitHub Allow: #16
-- Companion git reshape after Allow: #14
-- v1 done when fresh-account journey passes: #17
-
-## Later (not current bar)
-
-- Catalog go-live: #10 (`phase:implement`, priority:low)
-- NYC taxi: #8 (`phase:implement`, later listing)
-- Hotel front desk: #12 (`phase:refine`)
-- Clinician protocols: #13 (`phase:refine`)
+- Catalog go-live: #10
+- NYC taxi: #8
+- Hotel front desk: #12
+- Clinician protocols: #13

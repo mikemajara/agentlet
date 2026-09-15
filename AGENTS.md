@@ -14,7 +14,9 @@ Git tag **`checkpoint-deploy-notes`**. Do not regress this to work on Allow or e
 
 **Proven:** Deploy Button → notes clone + Blob → production site loads (notes + companion). Pre-click: `cd examples/notes && npm test && npm run build`. Allow UI parked (`ENABLE_GITHUB_ALLOW`). Clones are a snapshot; they do not pick up later template commits.
 
-**Not this bar:** in-app GitHub Allow, companion reshape, fresh-account [#17](https://github.com/mikemajara/agentlet/issues/17). Those issues were closed with PR #18; do not treat that as the journey passing.
+**Not this bar:** extra listings (#8, #12, #13) and catalog go-live (#10).
+
+**Now (2026-09-15 test):** unpark Allow — [#16](https://github.com/mikemajara/agentlet/issues/16) + [#14](https://github.com/mikemajara/agentlet/issues/14) as one concern (companion must speak when write is denied; one GitHub App; install aimed at this clone). Then first-run todos [#19](https://github.com/mikemajara/agentlet/issues/19). Fresh-account [#17](https://github.com/mikemajara/agentlet/issues/17) after those.
 
 ## v1 (locked — relock 2026-09-12)
 
