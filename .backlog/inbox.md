@@ -2,17 +2,19 @@
 
 Promoted. Canonical tracker is GitHub.
 
-## v1 self-drive (2026-09-12)
+## Current bar (2026-09-14)
 
-- Product lock in living docs: #15
-- In-app GitHub Allow (write to the clone): #16
-- Companion changes the running app after Allow: #14
-- Privacy: private GitHub repo + Vercel Authentication on all deployments. No app user DB. OIDC is for models only.
-- **v1 done:** #17 (fresh GitHub + Vercel journey)
+- Git tag `checkpoint-deploy-notes`: Deploy → notes + companion load. Allow UI parked.
 
-## Later (not v1)
+## Parked self-drive (open, status:blocked, phase:qa)
 
-- Catalog go-live: #10
-- NYC taxi: #8
-- Hotel front desk: #12
-- Clinician protocols: #13
+- In-app GitHub Allow: #16
+- Companion git reshape after Allow: #14
+- v1 done when fresh-account journey passes: #17
+
+## Later (not current bar)
+
+- Catalog go-live: #10 (`phase:implement`, priority:low)
+- NYC taxi: #8 (`phase:implement`, later listing)
+- Hotel front desk: #12 (`phase:refine`)
+- Clinician protocols: #13 (`phase:refine`)

@@ -7,6 +7,7 @@
 - **2026-09-13:** Parked in-app GitHub Allow / companion reshape as the *next* slice. First working bar is Deploy Button → Vercel site actually loads (notes + companion). Allow UI is off unless `ENABLE_GITHUB_ALLOW=true`. Blob adapter retries public if the store rejects private access so a default Deploy store does not 500 the homepage.
 - **2026-09-13:** Happy path is Deploy → open the site. No Storage-tab / “connect Blob then redeploy” instructions. Notes adapter calls `@vercel/blob` and lets the SDK resolve OIDC + `BLOB_STORE_ID` / token at request time (do not throw before the SDK). Deploy clones are a snapshot of `examples/notes` at click time; an already-cloned repo does not pick up later template commits.
 - **2026-09-14:** **Checkpoint `checkpoint-deploy-notes`.** Human Deploy (existing GitHub + Vercel) of current `examples/notes`: clone, typecheck/`next build`, site loads, notes + companion. GitHub Allow UI stays parked (`ENABLE_GITHUB_ALLOW`). #17/#16/#14 were closed with PR #18; that close is **not** this checkpoint and is **not** the fresh-account journey. Do not regress Deploy→load to chase Allow.
+- **2026-09-15:** Backlog review. Reopened #16/#14/#17 (`phase:qa`, `status:blocked`) — PR #18 close was false-complete vs parked Allow and #17 AC. Open later work relabeled to schema 3: #8/#10 `phase:implement`, #12/#13 `phase:refine`. No `status:doing`. `.backlog/issues.md` snapshot is stale (2026-08-27).
 
 ## Checkpoint (locked 2026-09-14)
 
