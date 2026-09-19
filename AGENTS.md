@@ -52,3 +52,12 @@ Examples stay independently deployable. Do not introduce workspace packages.
 - **Agent:** `agent/` Eve tools — `list_*` / `get_*` / `add_*` / `update_*` for that domain
 
 Provision skills ship **inside each app** (catalog: `provision-vercel`; notes: `provision-vercel`, `provision-storage`, `reshape-domain` for local/dev only).
+
+## Gotchas
+
+- Deploy Button / `-e` clones are a **snapshot** of the example folder at click time. Later template commits do not update an existing clone.
+- Before a Deploy click: `cd examples/notes && npm test && npm run build`. That TypeScript pass is what Vercel runs. Keep `**/*.test.ts` out of the example `tsconfig` `include`.
+- GitHub App **manifest** Allow: each *start* can register a **new** GitHub App. Retry must resume install of the same app if create-app already succeeded. A second registration is why testers get “install” after they already installed one (#16).
+- GitHub may still show an install confirmation. We name/pin the clone (`owner/repo`) and fail closed on the wrong repo; we cannot remove GitHub’s screen.
+- Write tools returning `ok: false` is not enough. If the owner asks to change the app and grant is missing, the companion **says so in chat** (#14). Silence is a fail.
+- Storage-tab / paste-token is not a recovery path. Blob auth is OIDC + store id and/or token at request time.

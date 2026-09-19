@@ -8,6 +8,7 @@
 - **2026-09-13:** Happy path is Deploy → open the site. No Storage-tab / “connect Blob then redeploy” instructions. Notes adapter calls `@vercel/blob` and lets the SDK resolve OIDC + `BLOB_STORE_ID` / token at request time (do not throw before the SDK). Deploy clones are a snapshot of `examples/notes` at click time; an already-cloned repo does not pick up later template commits.
 - **2026-09-14:** **Checkpoint `checkpoint-deploy-notes`.** Human Deploy (existing GitHub + Vercel) of current `examples/notes`: clone, typecheck/`next build`, site loads, notes + companion. GitHub Allow UI stays parked (`ENABLE_GITHUB_ALLOW`). #17/#16/#14 were closed with PR #18; that close is **not** this checkpoint and is **not** the fresh-account journey. Do not regress Deploy→load to chase Allow.
 - **2026-09-15:** Human test (existing GitHub + Vercel): Deploy/Blob OK; git reshape OK **after** Allow. Failures: companion silent when write denied; GitHub install friction (pick repo); Allow prompt after an app was already installed. Now-bar: #16 + #14 together (unpark Allow, one App, speak on deny), then #19 todos as first-run product. Do not start #8/#10/#12/#13. #17 stays blocked on that composition.
+- **2026-09-19:** Folded 2026-09-15 now-bar AC into #16/#14 bodies (was comments-only). #19: existing `notes.json` → one-time import of titles as incomplete todos. Gotchas promoted to `AGENTS.md` (manifest = new GitHub App per start; companion must speak on deny; `next build` typecheck).
 
 ## Checkpoint (locked 2026-09-14)
 
@@ -76,7 +77,7 @@ Git tag **`checkpoint-deploy-notes`** on `main`. Template SHA at lock: see that 
 ## Gotchas
 
 - Concurrent JSON writes: last-write-wins; in-process lock only. Git commits can race the same way if two turns write at once — last push wins.
-- `next build` typechecks `tsconfig` includes. Keep `**/*.test.ts` out of that config; `npm test && npm run build` in `examples/notes` is the same TypeScript pass Vercel runs — use it instead of deleting GitHub clones.
+- Clone snapshot, `next build` typecheck, manifest-retry = new GitHub App, companion silence: promoted to `AGENTS.md` Gotchas (2026-09-19).
 - Deploy-to-Vercel needs GitHub + Vercel. Blob + Gateway are cheap, not $0 forever. Local Companion still needs `vercel link` + `env pull`.
 - Name collision note (non-blocking): “agentlet” appears in a Substack essay and a tiny PyPI stub. We are using it anyway.
 - Clones used to copy whole GitHub `main` via `create-agent-files`. Now Deploy / `-e` clone the notes example only.
